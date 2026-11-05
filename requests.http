@@ -50,3 +50,58 @@ Content-Type: application/json
   "itens": [{ "sku": "   ", "quantidade": 1 }]
 }
 
+### Leitura 1
+POST {{baseUrl}}/pedidos/50231/leituras
+Content-Type: application/json
+
+{ "sku": "SSD-1TB-KG" }
+
+### Leitura com letras minúsculas
+POST {{baseUrl}}/pedidos/50231/leituras
+Content-Type: application/json
+
+{ "sku": "mem-16-ddr5" }
+
+### Leitura com espaço no final
+POST {{baseUrl}}/pedidos/50231/leituras
+Content-Type: application/json
+
+{ "sku": "SSD-1TB-KG " }
+
+### Leitura 
+POST {{baseUrl}}/pedidos/50231/leituras
+Content-Type: application/json
+
+{ "sku": "FNT-650W" }
+
+### Leitura 
+POST {{baseUrl}}/pedidos/50231/leituras
+Content-Type: application/json
+
+{ "sku": "BRD-ADESIVO" }
+
+### Leitura 
+POST {{baseUrl}}/pedidos/50231/leituras
+Content-Type: application/json
+
+{ "sku": "FNT-650W" }
+
+### Leitura 
+POST {{baseUrl}}/pedidos/50231/leituras
+Content-Type: application/json
+
+{ "sku": "CBL-HDMI-2M" }
+
+###  leitura sem SKU
+POST {{baseUrl}}/pedidos/50231/leituras
+Content-Type: application/json
+
+{ "sku": "" }
+
+### leitura em pedido que não existe
+POST {{baseUrl}}/pedidos/00000/leituras
+Content-Type: application/json
+
+{ "sku": "SSD-1TB-KG" }
+### Conferência
+GET {{baseUrl}}/pedidos/50231/conferencia
