@@ -1,0 +1,52 @@
+@baseUrl = http://localhost:3000
+
+### Criar pedido
+POST {{baseUrl}}/pedidos
+Content-Type: application/json
+
+{
+  "numero": "50231",
+  "itens": [
+    { "sku": "SSD-1TB-KG", "quantidade": 2 },
+    { "sku": "MEM-16-DDR5", "quantidade": 2 },
+    { "sku": "FNT-650W", "quantidade": 1 },
+    { "sku": "GAB-AIR-01", "quantidade": 1 }
+  ]
+}
+
+###  numero repetido 
+POST {{baseUrl}}/pedidos
+Content-Type: application/json
+
+{
+  "numero": "50231",
+  "itens": [{ "sku": "SSD-1TB-KG", "quantidade": 1 }]
+}
+
+###  pedido sem itens
+POST {{baseUrl}}/pedidos
+Content-Type: application/json
+
+{
+  "numero": "99999",
+  "itens": []
+}
+
+###  quantidade zero
+POST {{baseUrl}}/pedidos
+Content-Type: application/json
+
+{
+  "numero": "99999",
+  "itens": [{ "sku": "SSD-1TB-KG", "quantidade": 0 }]
+}
+
+### SKU vazio
+POST {{baseUrl}}/pedidos
+Content-Type: application/json
+
+{
+  "numero": "99999",
+  "itens": [{ "sku": "   ", "quantidade": 1 }]
+}
+
