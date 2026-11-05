@@ -4,7 +4,7 @@ import { calcularConferencia } from "../conferencia.js";
 
 export const pedidosRouter = Router();
 
-// ---------- Funções de apoio ----------
+// Funções de apoio
 
 function normalizarSku(sku) {
   return sku.trim().toUpperCase();
@@ -62,7 +62,7 @@ async function carregarConferencia(db, pedidoId) {
   );
 }
 
-// ---------- Rotas ----------
+//  Rotas
 
 // Criar pedido
 pedidosRouter.post("/", async (req, res) => {

@@ -58,66 +58,66 @@ Content-Type: application/json
 ### Consultar pedido
 GET {{baseUrl}}/pedidos/50231
 
-###  pedido que não existe
+###  pedido que não existe 
 GET {{baseUrl}}/pedidos/00000
 
+### ===== LEITURAS DO CENÁRIO (nesta ordem) =====
 
-
-### Leitura 
+### Leitura 1
 POST {{baseUrl}}/pedidos/50231/leituras
 Content-Type: application/json
 
 { "sku": "SSD-1TB-KG" }
 
-### Leitura com letras minúsculas
+### Leitura 2 (minúsculas)
 POST {{baseUrl}}/pedidos/50231/leituras
 Content-Type: application/json
 
 { "sku": "mem-16-ddr5" }
 
-### Leitura com espaço no final
+### Leitura 3 (espaço no final)
 POST {{baseUrl}}/pedidos/50231/leituras
 Content-Type: application/json
 
 { "sku": "SSD-1TB-KG " }
 
-### Leitura 
+### Leitura 4
 POST {{baseUrl}}/pedidos/50231/leituras
 Content-Type: application/json
 
 { "sku": "FNT-650W" }
 
-### Leitura 
+### Leitura 5
 POST {{baseUrl}}/pedidos/50231/leituras
 Content-Type: application/json
 
 { "sku": "BRD-ADESIVO" }
 
-### Leitura 
+### Leitura 6
 POST {{baseUrl}}/pedidos/50231/leituras
 Content-Type: application/json
 
 { "sku": "FNT-650W" }
 
-### Leitura 
+### Leitura 7
 POST {{baseUrl}}/pedidos/50231/leituras
 Content-Type: application/json
 
 { "sku": "CBL-HDMI-2M" }
 
-###  leitura sem SKU 
+### Erro: leitura sem SKU (400)
 POST {{baseUrl}}/pedidos/50231/leituras
 Content-Type: application/json
 
 { "sku": "" }
 
-###  leitura em pedido que não existe
+### Erro: leitura em pedido que não existe (404)
 POST {{baseUrl}}/pedidos/00000/leituras
 Content-Type: application/json
 
 { "sku": "SSD-1TB-KG" }
 
-
+### ===== CONFERÊNCIA E FECHAMENTO =====
 
 ### Conferência do 50231
 GET {{baseUrl}}/pedidos/50231/conferencia
@@ -125,7 +125,7 @@ GET {{baseUrl}}/pedidos/50231/conferencia
 ### Fechar 50231 (deve recusar com 422)
 POST {{baseUrl}}/pedidos/50231/fechamento
 
-
+### ===== CENÁRIO QUE FECHA COM SUCESSO =====
 
 ### Criar pedido 50232
 POST {{baseUrl}}/pedidos
