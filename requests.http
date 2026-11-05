@@ -1,6 +1,11 @@
 @baseUrl = http://localhost:3000
 
-### Criar pedido
+### Health check
+GET {{baseUrl}}/health
+
+
+
+### Criar pedido 
 POST {{baseUrl}}/pedidos
 Content-Type: application/json
 
@@ -14,7 +19,7 @@ Content-Type: application/json
   ]
 }
 
-###  numero repetido 
+###  número repetido 
 POST {{baseUrl}}/pedidos
 Content-Type: application/json
 
@@ -23,7 +28,7 @@ Content-Type: application/json
   "itens": [{ "sku": "SSD-1TB-KG", "quantidade": 1 }]
 }
 
-###  pedido sem itens
+### pedido sem itens 
 POST {{baseUrl}}/pedidos
 Content-Type: application/json
 
@@ -32,7 +37,7 @@ Content-Type: application/json
   "itens": []
 }
 
-###  quantidade zero
+###  quantidade zero 
 POST {{baseUrl}}/pedidos
 Content-Type: application/json
 
@@ -41,7 +46,7 @@ Content-Type: application/json
   "itens": [{ "sku": "SSD-1TB-KG", "quantidade": 0 }]
 }
 
-### SKU vazio
+###  SKU vazio 
 POST {{baseUrl}}/pedidos
 Content-Type: application/json
 
@@ -50,7 +55,15 @@ Content-Type: application/json
   "itens": [{ "sku": "   ", "quantidade": 1 }]
 }
 
-### Leitura 1
+### Consultar pedido
+GET {{baseUrl}}/pedidos/50231
+
+###  pedido que não existe
+GET {{baseUrl}}/pedidos/00000
+
+
+
+### Leitura 
 POST {{baseUrl}}/pedidos/50231/leituras
 Content-Type: application/json
 
@@ -92,16 +105,51 @@ Content-Type: application/json
 
 { "sku": "CBL-HDMI-2M" }
 
-###  leitura sem SKU
+###  leitura sem SKU 
 POST {{baseUrl}}/pedidos/50231/leituras
 Content-Type: application/json
 
 { "sku": "" }
 
-### leitura em pedido que não existe
+###  leitura em pedido que não existe
 POST {{baseUrl}}/pedidos/00000/leituras
 Content-Type: application/json
 
 { "sku": "SSD-1TB-KG" }
-### Conferência
+
+
+
+### Conferência do 50231
 GET {{baseUrl}}/pedidos/50231/conferencia
+
+### Fechar 50231 (deve recusar com 422)
+POST {{baseUrl}}/pedidos/50231/fechamento
+
+
+
+### Criar pedido 50232
+POST {{baseUrl}}/pedidos
+Content-Type: application/json
+
+{
+  "numero": "50232",
+  "itens": [{ "sku": "SSD-1TB-KG", "quantidade": 1 }]
+}
+
+### Leitura no 50232
+POST {{baseUrl}}/pedidos/50232/leituras
+Content-Type: application/json
+
+{ "sku": "ssd-1tb-kg" }
+
+### Fechar 50232 (deve fechar: 200)
+POST {{baseUrl}}/pedidos/50232/fechamento
+
+### Fechar 50232 de novo (409)
+POST {{baseUrl}}/pedidos/50232/fechamento
+
+### Leitura em pedido fechado (409)
+POST {{baseUrl}}/pedidos/50232/leituras
+Content-Type: application/json
+
+{ "sku": "SSD-1TB-KG" }
