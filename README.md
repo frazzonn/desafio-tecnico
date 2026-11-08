@@ -16,6 +16,9 @@ docker compose up -d
 npm run migrate
 npm run dev
 ```
+crie o arquivo ".env.example" e cole=
+DATABASE_URL=postgres://app:app@localhost:5433/conferencia
+PORT=3000
 
 A API sobe em `http://localhost:3000`.
 
